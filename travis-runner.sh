@@ -22,11 +22,11 @@ then
     git init
     git add --all
     git commit -m "Automatic bower module deploy"
-    git remote add origin https://$GH_TOKEN@$HOST/$ORG/$REMOTE_REPO.git
-#    git push --force --quiet origin master > /dev/null 2>&1
+    git remote add origin https://$GH_TOKEN@$HOST/$ORG/$REPO.git
+    git push --force --quiet origin master > /dev/null 2>&1
     git push --force origin master
 
-#    rm -R ./*
+    rm -R ./*
     cd ..
   }
 
@@ -43,7 +43,7 @@ then
   cp app/index.html.tmp1 app/index.html
   rm app/index.html.tmp1
 
-#  deploy_docs_to_gh_pages
+  deploy_docs_to_gh_pages
 
 
 elif [ "$TRAVIS_BRANCH" = "prod" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]  && [ "$TRAVIS_NODE_VERSION" != "5.1" ]
