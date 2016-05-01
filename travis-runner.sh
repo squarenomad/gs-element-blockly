@@ -16,6 +16,12 @@ then
 #    sed -i.tmp "s/\/\/ app.baseUrl = '\/polymer-starter-kit/app.baseUrl = '\/polymer-starter-kit/" app/js/app.js
 #    sed -i.tmp2 "s/<\/head>/\  \<script>'https:'!==window.location.protocol\&\&(window.location.protocol='https')<\/script>&/g" app/index.html
     gulp build-deploy-gh-master
+    cd ./dist
+    git init
+    git add --all
+    git commit -m "Automatic bower module deploy"
+    git remote add origin https://$GH_TOKEN@github.com/AlvarezAriel/gs-element-starter.git
+    git push origin master --force
   }
 
   deploy_gh_master
