@@ -33,6 +33,7 @@ then
   deploy_docs_to_gh_pages () {
     mkdir test2
     cd test2
+    chmod +x ../gp.sh
     ../gp.sh
   }
 

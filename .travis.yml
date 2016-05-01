@@ -24,7 +24,7 @@ script:
 env:
   global:
   - CXX='g++-4.8'
-  - ORG=AlvarezAriel
+  - ORG=gobstones
   - HOST=github.com
   - REPO=gs-element-starter
   - secure: Gi0Vg9BxSE0ReLU2V3cXBnyBcaZLkStE++0g6Rv4Uq3FItaiCelJQqbja2E7LvCZ2lQplTCR5ESS5J4xiCjSKo7kvHIl7jMEO4HQnrM94jJNp4FkmPekpyTMyqnU/inxGLFB7THtbbL+icPYNlqFGbo0/J1kPxa475QWN0/n24bj/O1zDgI2WKXOMWRyUJcMEY2m9fAuns02g0uHvd+WepzLGgP1PlkSaLocym/JN3uhoGEaeBlUDD2Arpo5UHhsYEaAiA/ue9tUqslD+NNgVcBd5gUbSPEH/eltkAXyM03fmoz7ySqUluhFFGu8kfbP0uabDpJGaNG3ObRbpHrXmH1qSnhjHeNOe+7sZab/Qmen+TyDXfofzFt+vP+m4O5lscFxThcJsAcWOFtxHI/f/6534kSq5FWtUHLNbwCjv6VyUX3tZUUPmt6utEaEABT/Iz9Fa3C7tBYeGDDSywRZVUTqX35yQK85eWzAtNRdPDrv/gJK5sObvVZ5JLc43IOvn2a7y8934UFvI2K2gjmQBjzxlquL+xXbACzuK6iIU8dudtOecsxzw23zFbZA3S4X4BjCbKzxcA9weiH1keYyrnxRjrIetrhWolcf0sN6jlCVV0TC9ylkbGHIBVA+Eq0oXKhckkBSBl1CjL4jTuO5JGtP/PYrES9nownRJ7nN7iE=
