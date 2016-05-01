@@ -1,20 +1,20 @@
-![](https://cloud.githubusercontent.com/assets/110953/7877439/6a69d03e-0590-11e5-9fac-c614246606de.png)
-## Polymer Starter Kit
+![](https://avatars1.githubusercontent.com/u/8825549?v=3&s=200)
+## Polymer Starter Kit for Gobstones Web elements
 
-> A starting point for building web applications with Polymer 1.0
+> A starting point for building elements for Gobstones Web. 
 
 ### Included out of the box:
 
 * [Polymer](https://www.polymer-project.org/), [Paper](https://elements.polymer-project.org/browse?package=paper-elements), [Iron](https://elements.polymer-project.org/browse?package=iron-elements) and [Neon](https://elements.polymer-project.org/browse?package=neon-elements) elements
-* [Material Design](http://www.google.com/design/spec/material-design/introduction.html) layout
-* Routing with [Page.js](https://visionmedia.github.io/page.js/)
 * Unit testing with [Web Component Tester](https://github.com/Polymer/web-component-tester)
-* Optional offline setup through [Platinum](https://elements.polymer-project.org/browse?package=platinum-elements) Service Worker elements
 * End-to-end Build Tooling (including [Vulcanize](https://github.com/Polymer/vulcanize))
-* [Recipes](/docs/README.md/) for ES2015 support, Polymer performance, using Chrome Dev Editor, Deploying to GitHub Pages, Deploying to Firebase, and Mobile Chrome Apps
+* Support for ES2015
+* Deploy of docs and demo to gh-pages
+* Deploy of bower module to github.
 
 ### Demo
-See latest Polymer Starter Kit Demo (from master) at https://polymerelements.github.io/polymer-starter-kit/
+
+See the [dummy demo](http://AlvarezAriel.github.io/gs-element-starter)
 
 ### Tutorials
 
@@ -26,25 +26,8 @@ Check out the Polymer Starter Kit tutorials on [polymer-project.org](https://www
 
 ## Getting Started
 
-To take advantage of Polymer Starter Kit you need to:
-
-1. Get a copy of the code.
-2. Install the dependencies if you don't already have them.
-3. Modify the application to your liking.
-4. Deploy your production code.
-
-### Get the code
-
-[Download](https://github.com/polymerelements/polymer-starter-kit/releases/latest) and extract Polymer Starter Kit to where you want to work. The project comes in two flavours - Light and Full.
-
-**Beginners**: Try Polymer Starter Kit Light. This doesn't require any extra dependencies nor knowledge of modern front-end tooling. This option is good for prototyping if you haven't build a Polymer app before.
-
-**Intermediate - Advanced**: Use the full version of Polymer Starter Kit. This comes with all the build tools you'll need for testing and productionising your app so it's nice and lean. You'll need to run a few extra commands to install the tools we recommend but it's worth it to make sure your final app is super optimised.
-
-:warning: **Important**: Polymer Starter Kit, and Polymer Starter Kit Light, both contain dotfiles (files starting with a `.`). If you're copying the contents of the Starter Kit to a new location make sure you bring along these dotfiles as well! On Mac, [enable showing hidden files](http://ianlunn.co.uk/articles/quickly-showhide-hidden-files-mac-os-x-mavericks/), then try extracting/copying Polymer Starter Kit again. This time the dotfiles needed should be visible so you can copy them over without issues.
-
-Rob Dodson has a fantastic [PolyCast video](https://www.youtube.com/watch?v=xz-yixRxZN8) available that walks through using Polymer Starter Kit. An [end-to-end with Polymer](https://www.youtube.com/watch?v=1f_Tj_JnStA) and Polymer Starter Kit talk is also available.
-
+ - Clone the __dev__ branch on this repository.
+ 
 ### Install dependencies
 
 #### Quick-start (for experienced users)
@@ -87,7 +70,7 @@ This lets you run `gulp` and `bower` from the command line.
 4)  Install the starter kit's local `npm` and `bower` dependencies.
 
 ```sh
-cd polymer-starter-kit && npm install && bower install
+cd gs-element-starter && npm install && bower install
 ```
 
 This installs the element sets (Paper, Iron, Platinum) and tools the starter kit requires to build and serve apps.
@@ -166,122 +149,11 @@ Components installed by Bower live in the `app/bower_components` directory. This
 
 ## Deploy
 
-### Github Pages
+After a new push to the __prod__ branch, an automatic deploy process will get started on TravisCI, generating:
 
-1. Uncomment this line  `// app.baseUrl = '/polymer-starter-kit/';` in app.js near the top
-2. Change `app.baseUrl = '/polymer-starter-kit/';`  to `app.baseUrl = '/your-pathname/';` (ex: if you repo is `github.com/username/bobs-awesome-site` you would change this to `bobs-awesome-site`)
-3. Run `gulp build-deploy-gh-pages` from command line
-4. To see changes wait 1-2 minutes then load Github pages for your app (ex: https://polymerelements.github.io/polymer-starter-kit/)
+- Docs and demos will be deployed to __gh-pages__ 
+- A bower module ready to be used will be deployed on the __master__ branch. This branch __SHOULD NOT BE USED MANUALLY__, only by TravisCI. 
 
-[See more details](/docs/deploy-to-github-pages.md/)
-
-### Firebase
-
-[See detail recipe](/docs/deploy-to-firebase-pretty-urls.md/)
-
-## Service Worker
-
-Polymer Starter Kit offers an optional offline experience thanks to Service Worker and the [Platinum Service Worker elements](https://github.com/PolymerElements/platinum-sw). New to Service Worker? Read the following [introduction](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) to understand how it works.
-
-Our optional offline setup should work well for relatively simple applications. For more complex apps, we recommend learning how Service Worker works so that you can make the most of the Platinum Service Worker element abstractions.
-
-### Enable Service Worker support?
-
-To enable Service Worker support for Polymer Starter Kit project use these 3 steps:
-
-1. Uncomment Service Worker code in index.html
-  ```HTML
-  <!-- Uncomment next block to enable Service Worker support (1/2) -->
-  <!--
-  <paper-toast id="caching-complete"
-               duration="6000"
-               text="Caching complete! This app will work offline.">
-  </paper-toast>
-
-  <platinum-sw-register auto-register
-                        clients-claim
-                        skip-waiting
-                        on-service-worker-installed="displayInstalledToast">
-    <platinum-sw-cache default-cache-strategy="networkFirst"
-                       cache-config-file="cache-config.json">
-    </platinum-sw-cache>
-  </platinum-sw-register>
-  -->
-  ```
-2. Uncomment Service Worker code in elements.html
-
-  ```HTML
-  <!-- Uncomment next block to enable Service Worker Support (2/2) -->
-  <!--
-  <link rel="import" href="../bower_components/platinum-sw/platinum-sw-cache.html">
-  <link rel="import" href="../bower_components/platinum-sw/platinum-sw-register.html">
-  -->
-  ```
-3. Uncomment 'cache-config' in the `runSequence()` section of the 'default' gulp task, like below:
-[(gulpfile.js)](https://github.com/PolymerElements/polymer-starter-kit/blob/master/gulpfile.js)
-
-  ```JavaScript
-  // Build Production Files, the Default Task
-  gulp.task('default', ['clean'], function (cb) {
-    runSequence(
-      ['copy', 'styles'],
-      'elements',
-      ['jshint', 'images', 'fonts', 'html'],
-      'vulcanize', 'cache-config',
-      cb);
-  });
-  ```
-
-#### Filing bugs in the right place
-
-If you experience an issue with Service Worker support in your application, check the origin of the issue and use the appropriate issue tracker:
-
-* [sw-toolbox](https://github.com/GoogleChrome/sw-toolbox/issues)
-* [platinum-sw](https://github.com/PolymerElements/platinum-sw/issues)
-* [platinum-push-notifications-manager](https://github.com/PolymerElements/platinum-push-messaging)
-* For all other issues, feel free to file them [here](https://github.com/polymerelements/polymer-starter-kit/issues).
-
-#### I get an error message about "Only secure origins are allowed"
-
-Service Workers are only available to "secure origins" (HTTPS sites, basically) in line with a policy to prefer secure origins for powerful new features. However http://localhost is also considered a secure origin, so if you can, developing on localhost is an easy way to avoid this error. For production, your site will need to support HTTPS.
-
-#### How do I debug Service Worker?
-
-If you need to debug the event listener wire-up use `chrome://serviceworker-internals`.
-
-#### What are those buttons on chrome://serviceworker-internals?
-
-This page shows your registered workers and provides some basic operations.
-
-* Unregister: Unregisters the worker.
-* Start: Starts the worker. This would happen automatically when you navigate to a page in the worker's scope.
-* Stop: Stops the worker.
-* Sync: Dispatches a 'sync' event to the worker. If you don't handle this event, nothing will happen.
-* Push: Dispatches a 'push' event to the worker. If you don't handle this event, nothing will happen.
-* Inspect: Opens the worker in the Inspector.
-
-#### Development flow
-
-In order to guarantee that the latest version of your Service Worker script is being used, follow these instructions:
-
-* After you made changes to your service worker script, close all but one of the tabs pointing to your web application
-* Hit shift-reload to bypass the service worker as to ensure that the remaining tab isn't under the control of a service worker
-* Hit reload to let the newer version of the Service Worker control the page.
-
-If you find anything to still be stale, you can also try navigating to `chrome:serviceworker-internals` (in Chrome), finding the relevant Service Worker entry for your application and clicking 'Unregister' before refreshing your app. This will (of course) only clear it from the local development machine. If you have already deployed to production then further work will be necessary to remove it from your user's machines.
-
-#### Disable Service Worker support after you enabled it
-
-If for any reason you need to disable Service Worker support after previously enabling it, you can remove it from your Polymer Starter Kit project using these 4 steps:
-
-1. Remove references to the platinum-sw elements from your application [index](https://github.com/PolymerElements/polymer-starter-kit/blob/master/app/index.html).
-2. Remove the two Platinum Service Worker elements (platinum-sw/..) in [app/elements/elements.html](https://github.com/PolymerElements/polymer-starter-kit/blob/master/app/elements/elements.html)
-3. Remove 'precache' from the list in the 'default' gulp task ([gulpfile.js](https://github.com/PolymerElements/polymer-starter-kit/blob/master/gulpfile.js))
-4. Navigate to `chrome://serviceworker-internals` and unregister any Service Workers registered by Polymer Starter Kit for your app just in case there's a copy of it cached.
-
-## Yeoman support
-
-[generator-polymer](https://github.com/yeoman/generator-polymer/releases) now includes support for Polymer Starter Kit out of the box.
 
 ## Frequently Asked Questions
 
@@ -365,12 +237,6 @@ during a build.
 ```
 
 If you are not using the build-blocks, but still wish for additional files (e.g scripts or stylesheets) to be included in the final `dist` directory, you will need to either copy these files as part of the gulpfile.js build process (see the `copy` task for how to automate this) or manually copy the files.
-
-### I'm finding the installation/tooling here overwhelming. What should I do?
-
-Don't worry! We've got your covered. Polymer Starter Kit tries to offer everything you need to build and optimize your apps for production, which is why we include the tooling we do. We realise however that our tooling setup may not be for everyone.
-
-If you find that you just want the simplest setup possible, we recommend using Polymer Starter Kit light, which is available from the [Releases](https://github.com/PolymerElements/polymer-starter-kit/releases) page. This takes next to no time to setup.
 
 ## Licensing
 

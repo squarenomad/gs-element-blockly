@@ -28,7 +28,7 @@ then
     git remote add origin https://$GH_TOKEN@$HOST/$ORG/$REMOTE_REPO.git
     git push --force --quiet origin master > /dev/null 2>&1
 
-    rm -R ./*
+#    rm -R ./*
     cd ..
   }
 
@@ -39,7 +39,7 @@ then
   }
 
   deploy_gh_master
-  deploy_docs_to_gh_pages
+#  deploy_docs_to_gh_pages
 
 
 elif [ "$TRAVIS_BRANCH" = "prod" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]  && [ "$TRAVIS_NODE_VERSION" != "5.1" ]

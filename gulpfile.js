@@ -266,12 +266,12 @@ gulp.task('build-deploy-gh-master', function (cb) {
 });
 
 gulp.task('copy-bower-module-definition', function () {
-  return gulp.src(['bower.json'])
+  return gulp.src(['bower.json', 'README.md', 'CONTRIBUTING.md'])
     .pipe(gulp.dest(dist()))
 });
 
 gulp.task('remove-artifacts-for-bower-deploy', function () {
-  return del([dist('/bower_components'),dist('/test')])
+  return del([dist('/bower_components')])
 });
 
 // Build and serve the output from the dist build
