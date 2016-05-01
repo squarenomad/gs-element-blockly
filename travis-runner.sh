@@ -21,7 +21,8 @@ then
     git add --all
     git commit -m "Automatic bower module deploy"
     git remote add origin https://$GH_TOKEN@github.com/AlvarezAriel/gs-element-starter.git
-    git push origin master --force --quiet origin master > /dev/null 2>&1
+#    git push --force --quiet origin master > /dev/null 2>&1
+    git push --force origin master
   }
 
   deploy_gh_master
