@@ -125,7 +125,7 @@ gulp.task('copy', function () {
     'app/*',
     '!app/test',
     '!app/elements',
-    '!app/bower_components',
+    '!bower_components',
     '!app/cache-config.json',
     '!**/.DS_Store'
   ], {
@@ -135,7 +135,7 @@ gulp.task('copy', function () {
   // Copy over only the bower_components we need
   // These are things which cannot be vulcanized
   var bower = gulp.src([
-    'app/bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
+    'bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
   ]).pipe(gulp.dest(dist('bower_components')));
 
   return merge(app, bower)
@@ -162,7 +162,7 @@ gulp.task('html', function () {
 
 // Transpile all JS to ES5.
 gulp.task('js', function () {
-  return gulp.src(['app/**/*.{js,html}', '!app/bower_components/**/*'])
+  return gulp.src(['app/**/*.{js,html}', '!bower_components/**/*'])
     .pipe($.sourcemaps.init())
     .pipe($.if('*.html', $.crisper({scriptInHead: false}))) // Extract JS from .html files
     .pipe($.if('*.js', $.babel({
@@ -291,22 +291,33 @@ gulp.task('default', ['clean'], function (cb) {
 });
 
 // Build then deploy to GitHub pages gh-pages branch
-gulp.task('build-deploy-gh-pages', function (cb) {
+gulp.task('build-deploy-gh-master', function (cb) {
   runSequence(
     'default',
-    'deploy-gh-pages',
+    'copy-bower-module-definition',
+    'remove-artifacts-for-bower-deploy',
+    //'deploy-gh-master',
     cb);
 });
 
+gulp.task('copy-bower-module-definition', function () {
+  return gulp.src(['bower.json'])
+    .pipe(gulp.dest(dist()))
+});
+
+gulp.task('remove-artifacts-for-bower-deploy', function () {
+  return del([dist('/bower_components'),dist('/demo'),dist('/test')])
+});
+
 // Deploy to GitHub pages gh-pages branch
-gulp.task('deploy-gh-pages', function () {
+gulp.task('deploy-gh-master', function () {
   return gulp.src(dist('**/*'))
     // Check if running task from Travis CI, if so run using GH_TOKEN
     // otherwise run using ghPages defaults.
     .pipe($.if(process.env.TRAVIS === 'true', $.ghPages({
       remoteUrl: 'https://$GH_TOKEN@github.com/polymerelements/polymer-starter-kit.git',
       silent: true,
-      branch: 'gh-pages'
+      branch: 'master'
     }), $.ghPages()));
 });
 
