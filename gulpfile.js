@@ -256,6 +256,75 @@ gulp.task('serve', ['styles', 'elements', 'images', 'js'], function () {
   gulp.watch(['app/images/**/*'], reload);
 });
 
+
+var onDist = function(action){
+  return function(){gulp.src(dist()).pipe(action())};
+};
+
+gulp.task('gitInit', function(){
+  $.git.init({cwd: dist()});
+});
+
+gulp.task('addAll', (function(){
+  gulp.src(dist('/*')).pipe($.git.add({args: '--all'}));
+}));
+
+gulp.task('commit', onDist(function(){
+  $.git.commit('bower component automatic deploy');
+}));
+
+gulp.task('addRemote', onDist(function(){
+  $.git.addRemote('origin', 'https://$GH_TOKEN@github.com/AlvarezAriel/gs-element-starter.git', function (err) {
+    if (err) throw err;
+  })
+}));
+
+gulp.task('push', onDist(function(){
+  $.git.push('origin', 'master', {args: " -f"}, function (err) {
+    if (err) throw err;
+  })
+}));
+
+gulp.task('push', onDist(function(){
+  git.push('origin', 'master', {args: " -f"}, function (err) {
+    if (err) throw err;
+  });
+}));
+
+// Build then deploy to GitHub pages gh-pages branch
+gulp.task('build-deploy-gh-master', function (cb) {
+  runSequence(
+    'default',
+    'copy-bower-module-definition',
+    'remove-artifacts-for-bower-deploy',
+    'remove-original.sources',
+    'move-dist-to-root',
+    'gitInit',
+    'addAll',
+    //'commit',
+    //'addRemote',
+    //'push',
+    cb);
+});
+
+gulp.task('copy-bower-module-definition', function () {
+  return gulp.src(['bower.json'])
+    .pipe(gulp.dest(dist()))
+});
+
+gulp.task('remove-artifacts-for-bower-deploy', function () {
+  return del( [dist('/bower_components'),dist('/demo'),dist('/test')])
+});
+
+gulp.task('move-dist-to-root', function () {
+  return gulp.src(dist('/*')).pipe(gulp.dest('.'))
+});
+
+
+gulp.task('remove-original.sources', function () {
+  return del.sync( './*', {ignore:dist()})
+});
+
 // Build and serve the output from the dist build
 gulp.task('serve:dist', ['default'], function () {
   browserSync({
@@ -288,39 +357,6 @@ gulp.task('default', ['clean'], function (cb) {
     ['images', 'fonts', 'html'],
     'vulcanize', // 'cache-config',
     cb);
-});
-
-// Build then deploy to GitHub pages gh-pages branch
-gulp.task('build-deploy-gh-master', function (cb) {
-  runSequence(
-    'default',
-    'copy-bower-module-definition',
-    'remove-artifacts-for-bower-deploy',
-    //'deploy-gh-master',
-    cb);
-});
-
-gulp.task('copy-bower-module-definition', function () {
-  return gulp.src(['bower.json'])
-    .pipe(gulp.dest(dist()))
-});
-
-gulp.task('remove-artifacts-for-bower-deploy', function () {
-  return del([dist('/bower_components'),dist('/demo'),dist('/test')])
-});
-
-// Deploy to GitHub pages gh-pages branch
-gulp.task('deploy-gh-master', function () {
-  return gulp.src(dist('**/*'))
-    .pipe($.git.init())
-    .pipe($.git.add({args: '--all'}))
-    .pipe($.git.commit('bower component automatic deploy'))
-    .pipe($.git.addRemote('origin', 'https://$GH_TOKEN@github.com/AlvarezAriel/gs-element-starter.git', function (err) {
-      if (err) throw err;
-    }))
-    .pipe($.git.push('origin', 'master', {args: " -f"}, function (err) {
-      if (err) throw err;
-    }))
 });
 
 // Load tasks for web-component-tester

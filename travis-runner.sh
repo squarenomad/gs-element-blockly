@@ -16,18 +16,10 @@ then
 #    sed -i.tmp "s/\/\/ app.baseUrl = '\/polymer-starter-kit/app.baseUrl = '\/polymer-starter-kit/" app/js/app.js
 #    sed -i.tmp2 "s/<\/head>/\  \<script>'https:'!==window.location.protocol\&\&(window.location.protocol='https')<\/script>&/g" app/index.html
     gulp build-deploy-gh-master
-    # Undoing Changes to PSK for GitHub Pages
-    cp app/js/app.js.tmp app/js/app.js
-    rm app/js/app.js.tmp
-    cp app/index.html.tmp2 app/index.html
-    rm app/index.html.tmp2
   }
 
   deploy_gh_master
 
-  # Revert to orginal index.html and delete temp file
-  cp app/index.html.tmp1 app/index.html
-  rm app/index.html.tmp1
 
 elif [ "$TRAVIS_BRANCH" = "prod" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]  && [ "$TRAVIS_NODE_VERSION" != "5.1" ]
 then
