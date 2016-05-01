@@ -16,16 +16,30 @@ then
 #    sed -i.tmp "s/\/\/ app.baseUrl = '\/polymer-starter-kit/app.baseUrl = '\/polymer-starter-kit/" app/js/app.js
 #    sed -i.tmp2 "s/<\/head>/\  \<script>'https:'!==window.location.protocol\&\&(window.location.protocol='https')<\/script>&/g" app/index.html
     gulp build-deploy-gh-master
+
+    cp app/index.html.tmp1 app/index.html
+    rm app/index.html.tmp1
+
     cd ./dist
+
     git init
     git add --all
     git commit -m "Automatic bower module deploy"
-    git remote add origin https://$GH_TOKEN@github.com/AlvarezAriel/gs-element-starter.git
-#    git push --force --quiet origin master > /dev/null 2>&1
-    git push --force origin master
+    git remote add origin https://$GH_TOKEN@$HOST/$ORG/$REMOTE_REPO.git
+    git push --force --quiet origin master > /dev/null 2>&1
+
+    rm -R ./*
+    cd ..
+  }
+
+  deploy_docs_to_gh_pages () {
+    mkdir test2
+    cd test2
+    ../gp.sh
   }
 
   deploy_gh_master
+  deploy_docs_to_gh_pages
 
 
 elif [ "$TRAVIS_BRANCH" = "prod" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]  && [ "$TRAVIS_NODE_VERSION" != "5.1" ]

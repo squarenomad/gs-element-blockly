@@ -271,7 +271,7 @@ gulp.task('copy-bower-module-definition', function () {
 });
 
 gulp.task('remove-artifacts-for-bower-deploy', function () {
-  return del([dist('/bower_components'),dist('/demo'),dist('/test')])
+  return del([dist('/bower_components'),dist('/test')])
 });
 
 // Build and serve the output from the dist build
