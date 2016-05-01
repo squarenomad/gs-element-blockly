@@ -4,22 +4,23 @@ addons:
   firefox: latest
   apt:
     sources:
-      - google-chrome
-      - ubuntu-toolchain-r-test
+    - google-chrome
+    - ubuntu-toolchain-r-test
     packages:
-      - google-chrome-stable
-      - g++-4.8
+    - google-chrome-stable
+    - g++-4.8
 node_js:
-  - '4.2'
-  - '5.1'
+- '4.2'
+- '5.1'
 before_script:
-  - 'export DISPLAY=:99.0'
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
-  - npm i -g bower@1.7.1 gulp@3.9.0
-  - bower i
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
+- npm i -g bower@1.7.1 gulp@3.9.0
+- bower i
 script:
-  - ./travis-runner.sh
+- "./travis-runner.sh"
 env:
   global:
-    - "CXX='g++-4.8'"
+  - CXX='g++-4.8'
+  - secure: nt46KvAmi6YBaXFP26t1sMo/hmT4CjsXejzBLFGAOKIvWj2HQWH93GKdEqb4NsMeX51E/Ow0S5AzQM97ZKSJaR2Rhy7eF1eis/Hn9OF2Thm3QcTtxuEqQ6ErvEzjQjxilRIRPig37z3kYVZizEceOtCszQnsqOCwY63aoC97Nn1kNZjmcd8vdcOndyWOCv9nXzeAaUC/0Aj0GoWR/sapwDyiXOrWFa8X65Hxp35qvRTImMYdG+yj3Pdz/eXNNCnuXhdle0qMWXGv/BZgvzrVYps9j58C/Vxbq9pm45f3cOU+QCdWTjy4YG5DNsB/sqPQ6h9csiklZxYNHVU/kgeXzNluR86Ppa8u6DyPPGmcVM/LgAVl7/0+/q1WmdT1iEmIfpqiirvfQI0kt10VvoYdhT3W6Gn4Jgdn0KJ30cZuSwnJvPZiujloXLSS4OefFGbLjZ4wxCe+YR7WPN+hUe7ihgkA7QeHLjxV+MQkht6pDmRqpSIsuzYGSUbRhZqKDekOCV1gfABxMlSXYKBGKujtUAAaRx871RZYb4D6x/fFYOg8bFtnITBtUyN6liL2rxFJSt07Lue8AqAOzB7RySxm9RllxTt0+05Gdzc3Nm7jyhVjjP8KPBzV+Z0RemLl+DUUAel9OIzoodMvP1OEkyFevqHQf4uEFCwu+9J9dCg8kMA=

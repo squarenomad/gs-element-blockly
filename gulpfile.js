@@ -312,13 +312,15 @@ gulp.task('remove-artifacts-for-bower-deploy', function () {
 // Deploy to GitHub pages gh-pages branch
 gulp.task('deploy-gh-master', function () {
   return gulp.src(dist('**/*'))
-    // Check if running task from Travis CI, if so run using GH_TOKEN
-    // otherwise run using ghPages defaults.
-    .pipe($.if(process.env.TRAVIS === 'true', $.ghPages({
-      remoteUrl: 'https://$GH_TOKEN@github.com/polymerelements/polymer-starter-kit.git',
-      silent: true,
-      branch: 'master'
-    }), $.ghPages()));
+    .pipe($.git.init())
+    .pipe($.git.add({args: '--all'}))
+    .pipe($.git.commit('bower component automatic deploy'))
+    .pipe($.git.addRemote('origin', 'https://$GH_TOKEN@github.com/AlvarezAriel/gs-element-starter.git', function (err) {
+      if (err) throw err;
+    }))
+    .pipe($.git.push('origin', 'master', {args: " -f"}, function (err) {
+      if (err) throw err;
+    }))
 });
 
 // Load tasks for web-component-tester
