@@ -17,16 +17,14 @@ then
 #    sed -i.tmp2 "s/<\/head>/\  \<script>'https:'!==window.location.protocol\&\&(window.location.protocol='https')<\/script>&/g" app/index.html
     gulp build-deploy-gh-master
 
-    cp app/index.html.tmp1 app/index.html
-    rm app/index.html.tmp1
-
     cd ./dist
 
     git init
     git add --all
     git commit -m "Automatic bower module deploy"
     git remote add origin https://$GH_TOKEN@$HOST/$ORG/$REMOTE_REPO.git
-    git push --force --quiet origin master > /dev/null 2>&1
+#    git push --force --quiet origin master > /dev/null 2>&1
+    git push --force origin master
 
 #    rm -R ./*
     cd ..
@@ -39,6 +37,12 @@ then
   }
 
   deploy_gh_master
+
+  echo "Publishing docs and demos to gh-pages"
+
+  cp app/index.html.tmp1 app/index.html
+  rm app/index.html.tmp1
+
 #  deploy_docs_to_gh_pages
 
 

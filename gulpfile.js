@@ -24,6 +24,7 @@ var historyApiFallback = require('connect-history-api-fallback');
 var packageJson = require('./package.json');
 var crypto = require('crypto');
 var ensureFiles = require('./tasks/ensure-files.js');
+const xo = require('gulp-xo');
 
 // var ghPages = require('gulp-gh-pages');
 
@@ -297,11 +298,15 @@ gulp.task('serve:dist', ['default'], function () {
   });
 });
 
+gulp.task('code-format-check', function(){
+  gulp.src('app/**/*.js').pipe(xo())
+});
+
 // Build production files, the default task
 gulp.task('default', ['clean'], function (cb) {
   // Uncomment 'cache-config' if you are going to use service workers.
   runSequence(
-    ['ensureFiles', 'copy', 'styles'],
+    ['code-format-check', 'ensureFiles', 'copy', 'styles'],
     ['elements', 'js'],
     ['images', 'fonts', 'html'],
     'vulcanize', // 'cache-config',
