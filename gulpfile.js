@@ -126,7 +126,7 @@ gulp.task('copy', function () {
     'app/*',
     '!app/test',
     '!app/elements',
-    '!bower_components',
+    '!client/bower_components',
     '!app/cache-config.json',
     '!**/.DS_Store'
   ], {
@@ -136,7 +136,7 @@ gulp.task('copy', function () {
   // Copy over only the bower_components we need
   // These are things which cannot be vulcanized
   var bower = gulp.src([
-    'bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
+    'client/bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
   ]).pipe(gulp.dest(dist('bower_components')));
 
   return merge(app, bower)
@@ -163,7 +163,7 @@ gulp.task('html', function () {
 
 // Transpile all JS to ES5.
 gulp.task('js', function () {
-  return gulp.src(['app/**/*.{js,html}', '!bower_components/**/*'])
+  return gulp.src(['app/**/*.{js,html}', '!client/bower_components/**/*'])
     .pipe($.sourcemaps.init())
     .pipe($.if('*.html', $.crisper({scriptInHead: false}))) // Extract JS from .html files
     .pipe($.if('*.js', $.babel({
@@ -203,7 +203,7 @@ gulp.task('cache-config', function (callback) {
   glob([
       'index.html',
       './',
-      'bower_components/webcomponentsjs/webcomponents-lite.min.js',
+      'client/bower_components/webcomponentsjs/webcomponents-lite.min.js',
       '{elements,scripts,styles}/**/*.*'],
     {cwd: dir}, function (error, files) {
       if (error) {
@@ -245,7 +245,7 @@ gulp.task('serve', ['styles', 'elements', 'images', 'js'], function () {
     //       will present a certificate warning in the browser.
     // https: true,
     server: {
-      baseDir: ['.tmp', 'app'],
+      baseDir: ['.tmp', 'app', 'client'],
       middleware: [historyApiFallback()]
     }
   });
