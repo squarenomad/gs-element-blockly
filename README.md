@@ -1,33 +1,9 @@
-![](https://avatars1.githubusercontent.com/u/8825549?v=3&s=200)
-## Polymer Starter Kit for Gobstones Web elements
-
-> A starting point for building elements for Gobstones Web. 
-
-### Included out of the box:
-
-* [Polymer](https://www.polymer-project.org/), [Paper](https://elements.polymer-project.org/browse?package=paper-elements), [Iron](https://elements.polymer-project.org/browse?package=iron-elements) and [Neon](https://elements.polymer-project.org/browse?package=neon-elements) elements
-* Unit testing with [Web Component Tester](https://github.com/Polymer/web-component-tester)
-* End-to-end Build Tooling (including [Vulcanize](https://github.com/Polymer/vulcanize))
-* Support for ES2015
-* Deploy of docs and demo to gh-pages
-* Deploy of bower module to github.
-
-### Demo
-
-See the [dummy demo](http://AlvarezAriel.github.io/gs-element-starter)
-
-### Tutorials
-
-Check out the Polymer Starter Kit tutorials on [polymer-project.org](https://www.polymer-project.org):
-
-* [Set up the PSK](https://www.polymer-project.org/1.0/docs/start/psk/set-up.html)
-* [Create a page](https://www.polymer-project.org/1.0/docs/start/psk/create-a-page.html)
-* [Deploy the PSK to the web](https://www.polymer-project.org/1.0/docs/start/psk/deploy.html)
+## Polymer blockly-element for Gobstones Web elements
 
 ## Getting Started
 
  - Clone the __dev__ branch on this repository.
- 
+
 ### Install dependencies
 
 #### Quick-start (for experienced users)
@@ -151,8 +127,8 @@ Components installed by Bower live in the `app/bower_components` directory. This
 
 After a new push to the __prod__ branch, an automatic deploy process will get started on TravisCI, generating:
 
-- Docs and demos will be deployed to __gh-pages__ 
-- A bower module ready to be used will be deployed on the __master__ branch. This branch __SHOULD NOT BE USED MANUALLY__, only by TravisCI. 
+- Docs and demos will be deployed to __gh-pages__
+- A bower module ready to be used will be deployed on the __master__ branch. This branch __SHOULD NOT BE USED MANUALLY__, only by TravisCI.
 
 
 ## Frequently Asked Questions
@@ -199,7 +175,7 @@ Node.js (and npm) may have been installed into `C:\Program Files\`. Updating npm
 into `%AppData%\npm`, but your system will still use the npm version. You can avoid this by deleting your older npm from `C:\Program Files\nodejs`
 as described [here](https://github.com/npm/npm/issues/6309#issuecomment-67549380).
 
-If you get a browser console error indicating that an element you know you have installed is missing, try deleting the bower_components folder, then run `bower cache clean` followed by `bower install` to reinstall. This can be especially helpful when upgrading from a prior version of the Polymer Starter Kit. 
+If you get a browser console error indicating that an element you know you have installed is missing, try deleting the bower_components folder, then run `bower cache clean` followed by `bower install` to reinstall. This can be especially helpful when upgrading from a prior version of the Polymer Starter Kit.
 
 If the issue is to do with a failure somewhere else, you might find that due to a network issue
 a dependency failed to correctly install. We recommend running `npm cache clean` and deleting the `node_modules` directory followed by

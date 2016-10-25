@@ -12,37 +12,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>gs-element-starter Demo</title>
+    <title>gs-element-blockly Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="../gs-element-starter.html">
+    <link rel="import" href="../gs-element-blockly.html">
   </head>
   <body unresolved>
 
-    <p>An example of <code>&lt;gs-element-starter&gt;</code>:</p>
-
-    <p>Make words! <button id="saybtn">Say Something</button></p>
-    <p>Make lasers! <button id="laserbtn">Fire lasers</button></p>
-
-    <gs-element-starter author='{"name": "Lord Meowser", "image": "http://lorempixel.com/g/300/200/cats/"}' fancy>
-      <h2>Hello gs-element-starter</h2>
-    </gs-element-starter>
+    <p>An example of <code>&lt;gs-element-blockly&gt;</code>:</p>
+    <gs-element-blockly>
+    </gs-element-blockly>
 
     <script>
-      var seedElement = document.querySelector('gs-element-starter');
+      var blocklyElement = document.querySelector('gs-element-blockly');
 
-      document.querySelector('#saybtn').addEventListener('click', function() {
-        alert(seedElement.sayHello('Hallo!'));
-      });
-
-      document.querySelector('#laserbtn').addEventListener('click', function() {
-        seedElement.fireLasers();
-      });
-
-      document.addEventListener("gs-element-starter-lasers", function(e) {
-        console.log(e.detail.sound);
+      document.querySelector('#generatebtn').addEventListener('click', function() {
+        document.getElementById("code").innerHTML = blocklyElement.generateCode();
       });
 
     </script>
 
+    <p><button id="generatebtn">Generar Código</button></p>
+    <textarea id="code" rows="20" cols="80"></textarea>
   </body>
 </html>
