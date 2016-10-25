@@ -65,4 +65,8 @@ This outputs an IP address you can use to locally test and another that can be u
 
 Despues de correr gulp serve visitar http://localhost:5000/#gs-element-blockly
 
+![](screenshots/doc.png)
+
 Y hacer click en el botón de arriba a la derecha "demo"
+
+![](screenshots/demo.png)
