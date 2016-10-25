@@ -221,22 +221,22 @@ Blockly.GobstonesLanguage['color_verde'] = function(block) {
   return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
 };
 
-Blockly.GobstonesLanguage['este'] = function(block) {
+Blockly.GobstonesLanguage['direccion_este'] = function(block) {
   var code = 'Este';
   return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
 };
 
-Blockly.GobstonesLanguage['oeste'] = function(block) {
+Blockly.GobstonesLanguage['direccion_oeste'] = function(block) {
   var code = 'Oeste';
   return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
 };
 
-Blockly.GobstonesLanguage['norte'] = function(block) {
+Blockly.GobstonesLanguage['direccion_norte'] = function(block) {
   var code = 'Norte';
   return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
 };
 
-Blockly.GobstonesLanguage['sur'] = function(block) {
+Blockly.GobstonesLanguage['direccion_sur'] = function(block) {
   var code = 'Sur';
   return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
 };
