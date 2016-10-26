@@ -46,7 +46,7 @@ This lets you run `gulp` and `bower` from the command line.
 4)  Install the starter kit's local `npm` and `bower` dependencies.
 
 ```sh
-cd gs-element-starter && npm install && bower install
+cd gs-element-blockly && npm install && bower install
 ```
 
 This installs the element sets (Paper, Iron, Platinum) and tools the starter kit requires to build and serve apps.
