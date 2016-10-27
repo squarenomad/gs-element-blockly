@@ -21,7 +21,7 @@ Blockly.Blocks['color_verde'] = {
 Blockly.Blocks['poner_color'] = {
   init: function() {
     this.jsonInit({
-      "message0": 'Poner color %1',
+      "message0": 'Poner %1',
       "args0": [
         {
           "type": "input_value",
@@ -33,6 +33,7 @@ Blockly.Blocks['poner_color'] = {
       "nextStatement": true,
       "colour": 200,
       "tooltip": "Poner color en casillero.",
+      "inputsInline": true,
     });
   }
 };
@@ -40,7 +41,7 @@ Blockly.Blocks['poner_color'] = {
 Blockly.Blocks['sacar_color'] = {
   init: function() {
     this.jsonInit({
-      "message0": 'Sacar color %1',
+      "message0": 'Sacar %1',
       "args0": [
         {
           "type": "input_value",
@@ -52,6 +53,7 @@ Blockly.Blocks['sacar_color'] = {
       "nextStatement": true,
       "colour": 200,
       "tooltip": "Sacar color de casillero.",
+      "inputsInline": true,
     });
   }
 };
@@ -71,6 +73,7 @@ Blockly.Blocks['mover'] = {
       "nextStatement": true,
       "colour": 120,
       "tooltip": "Mover en una dirección.",
+      "inputsInline": true,
     });
   }
 };
