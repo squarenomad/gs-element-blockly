@@ -1,18 +1,18 @@
 {
-  "name": "gs-element-starter",
-  "version": "1.0.7",
+  "name": "gs-element-blockly",
+  "version": "0.0.1",
   "authors": [
-    "AlvarezAriel"
+    "miguelgarcia"
   ],
-  "description": "A project example for generating gobstones elements.",
+  "description": "Elemento blockly para gobstones.",
   "keywords": [
     "web-component",
     "polymer",
     "gobstones"
   ],
-  "main": "gs-element-starter.html",
+  "main": "gs-element-blockly.html",
   "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "homepage": "https://github.com/Program-AR/gs-element-blockly",
   "ignore": [
     "/.*",
     "/test/"

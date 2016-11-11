@@ -1,6 +1,6 @@
 {
-  "name": "Gobstones starter element",
-  "short_name": "Gobstones starter element",
+  "name": "Gobstones blockly element",
+  "short_name": "Gobstones blockly element",
   "icons": [{
         "src": "images/touch/icon-72x72.png",
         "sizes": "72x72",
