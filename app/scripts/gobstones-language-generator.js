@@ -1,6 +1,10 @@
+/*
+ * Blockly code generator for Gobstones
+ */
 goog.require('Blockly.Generator');
 
 Blockly.GobstonesLanguage = new Blockly.Generator('GobstonesLanguage');
+
 /**
  * Order of operation ENUMs.
  * https://developer.mozilla.org/en/GobstonesLanguage/Reference/Operators/Operator_Precedence
@@ -190,57 +194,6 @@ Blockly.GobstonesLanguage.getAdjusted = function(block, atId, opt_delta, opt_neg
   return at;
 };
 
-Blockly.GobstonesLanguage['poner_color'] = function(block) {
-  var color = Blockly.GobstonesLanguage.valueToCode(block, 'COLOR',
-      Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
-  var code = 'Poner('+color+')\n';
-  return code;
-};
-
-Blockly.GobstonesLanguage['sacar_color'] = function(block) {
-  var color = Blockly.GobstonesLanguage.valueToCode(block, 'COLOR',
-      Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
-  var code = 'Sacar('+color+')\n';
-  return code;
-};
-
-Blockly.GobstonesLanguage['mover'] = function(block) {
-  var direccion = Blockly.GobstonesLanguage.valueToCode(block, 'DIRECCION',
-      Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
-  var code = 'Mover('+direccion+')\n';
-  return code;
-};
-
-Blockly.GobstonesLanguage['color_rojo'] = function(block) {
-  var code = 'Rojo';
-  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
-Blockly.GobstonesLanguage['color_verde'] = function(block) {
-  var code = 'Verde';
-  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
-Blockly.GobstonesLanguage['direccion_este'] = function(block) {
-  var code = 'Este';
-  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
-Blockly.GobstonesLanguage['direccion_oeste'] = function(block) {
-  var code = 'Oeste';
-  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
-Blockly.GobstonesLanguage['direccion_norte'] = function(block) {
-  var code = 'Norte';
-  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
-Blockly.GobstonesLanguage['direccion_sur'] = function(block) {
-  var code = 'Sur';
-  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
 /**
  * Initialise the database of variable names.
  * @param {!Blockly.Workspace} workspace Workspace to generate code from.
@@ -269,4 +222,170 @@ Blockly.GobstonesLanguage.init = function(workspace) {
     Blockly.GobstonesLanguage.definitions_['variables'] =
         'var ' + defvars.join(', ') + ';';
   }*/
+};
+
+Blockly.GobstonesLanguage['Poner'] = function(block) {
+  var color = Blockly.GobstonesLanguage.valueToCode(block, 'COLOR',
+  Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+  var code = 'Poner('+color+')\n';
+  return code;
+};
+
+Blockly.GobstonesLanguage['Sacar'] = function(block) {
+  var color = Blockly.GobstonesLanguage.valueToCode(block, 'COLOR',
+  Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+  var code = 'Sacar('+color+')\n';
+  return code;
+};
+
+Blockly.GobstonesLanguage['Mover'] = function(block) {
+  var direccion = Blockly.GobstonesLanguage.valueToCode(block, 'DIRECCION',
+  Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+  var code = 'Mover('+direccion+')\n';
+  return code;
+};
+
+Blockly.GobstonesLanguage['IrAlBorde'] = function(block) {
+  var direccion = Blockly.GobstonesLanguage.valueToCode(block, 'DIRECCION',
+  Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+  var code = 'IrAlBorde('+direccion+')\n';
+  return code;
+};
+
+Blockly.GobstonesLanguage['VaciarTablero'] = function(block) {
+  var code = 'VaciarTablero()\n';
+  return code;
+};
+
+Blockly.GobstonesLanguage['Rojo'] = function(block) {
+  var code = 'Rojo';
+  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
+};
+
+Blockly.GobstonesLanguage['Verde'] = function(block) {
+  var code = 'Verde';
+  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
+};
+
+Blockly.GobstonesLanguage['Este'] = function(block) {
+  var code = 'Este';
+  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
+};
+
+Blockly.GobstonesLanguage['Oeste'] = function(block) {
+  var code = 'Oeste';
+  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
+};
+
+Blockly.GobstonesLanguage['Norte'] = function(block) {
+  var code = 'Norte';
+  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
+};
+
+Blockly.GobstonesLanguage['Sur'] = function(block) {
+  var code = 'Sur';
+  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
+};
+
+Blockly.GobstonesLanguage['math_number'] = function(block) {
+  // Numeric value.
+  var code = parseFloat(block.getFieldValue('NUM'));
+  return [code, Blockly.GobstonesLanguage.ORDER_ATOMIC];
+};
+
+Blockly.GobstonesLanguage['Program'] = function(block) {
+  let program = Blockly.GobstonesLanguage.statementToCode(block, 'program');
+  let codigo = `program {\n${program}}`;
+  return codigo;
+};
+
+Blockly.GobstonesLanguage['Repetir'] = function(block) {
+  let body = Blockly.GobstonesLanguage.statementToCode(block, 'block');
+  var count = Blockly.GobstonesLanguage.valueToCode(block, 'count',
+  Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+
+  let codigo = `repeat(${count}) {\n${body}}\n`;
+  return codigo;
+};
+
+Blockly.GobstonesLanguage['RepetirHasta'] = function(block) {
+  let body = Blockly.GobstonesLanguage.statementToCode(block, 'block');
+  var condicion = Blockly.GobstonesLanguage.valueToCode(block, 'condicion',
+  Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+
+  let codigo = `while (not (${condicion})) {\n${body}}\n`;
+  return codigo;
+};
+
+Blockly.GobstonesLanguage['SiEntonces'] = function(block) {
+  let body = Blockly.GobstonesLanguage.statementToCode(block, 'block');
+  var condicion = Blockly.GobstonesLanguage.valueToCode(block, 'condicion',
+  Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+
+  let codigo = `if (${condicion}) {\n${body}}\n`;
+  return codigo;
+};
+
+Blockly.GobstonesLanguage['SiEntoncesSiNo'] = function(block) {
+  let body1 = Blockly.GobstonesLanguage.statementToCode(block, 'block1');
+  let body2 = Blockly.GobstonesLanguage.statementToCode(block, 'block2');
+  var condicion = Blockly.GobstonesLanguage.valueToCode(block, 'condicion',
+  Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+
+  let codigo = `if (${condicion}) {\n${body1}}\nelse {\n${body2}}\n`;
+  return codigo;
+};
+
+Blockly.GobstonesLanguage['HayBolitas'] = function(block) {
+  var color = Blockly.GobstonesLanguage.valueToCode(block, 'COLOR',
+  Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+  var code = 'hayBolitas('+color+')';
+  return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
+};
+
+Blockly.GobstonesLanguage.formatProcName = function(name)
+{
+  var pname = Blockly.GobstonesLanguage.variableDB_.getName(
+    name, Blockly.Procedures.NAME_TYPE);
+
+  pname = pname[0].toUpperCase() + pname.slice(1);
+  return pname;
+};
+
+Blockly.GobstonesLanguage['procedures_defnoreturn'] = function(block) {
+  var name = Blockly.GobstonesLanguage.formatProcName(block.getFieldValue('NAME'));
+
+  var body = Blockly.GobstonesLanguage.statementToCode(block, 'STACK');
+
+  var args = [];
+  for (var x = 0; x < block.arguments_.length; x++) {
+    args[x] = Blockly.GobstonesLanguage.variableDB_.getName(block.arguments_[x],
+      Blockly.Variables.NAME_TYPE);
+  }
+  var args_string = args.map(function(i) { return '"' + i + '"'; }).join(', ');
+
+  var code = 'procedure ' + name + '(' + args.join(', ') + ') {\n' +
+    body + '}';
+
+  code = Blockly.GobstonesLanguage.scrub_(block, code);
+  Blockly.GobstonesLanguage.definitions_[name] = code;
+
+  return null
+};
+
+Blockly.GobstonesLanguage['procedures_callnoreturn'] = function(block) {
+  var procName = Blockly.GobstonesLanguage.formatProcName( block.getFieldValue('NAME'));
+  var args = [];
+  for (var i = 0; i < block.arguments_.length; i++) {
+    args[i] = Blockly.GobstonesLanguage.valueToCode(block, 'ARG' + i,
+      Blockly.GobstonesLanguage.ORDER_COMMA) || 'null';
+    }
+  var code = procName + '(' + args.join(', ') + ')\n';
+  return code;
+};
+
+Blockly.GobstonesLanguage['variables_get'] = function(block) {
+  var code = Blockly.GobstonesLanguage.variableDB_.getName(block.getFieldValue('VAR'),
+      Blockly.Variables.NAME_TYPE);
+  return [code, Blockly.GobstonesLanguage.ORDER_ATOMIC];
 };

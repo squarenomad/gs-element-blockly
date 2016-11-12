@@ -35,15 +35,39 @@ Example:
     <content></content>
     <div id="blocklyDiv" style="width: 800px; height: 300px;"></div>
     <xml id="toolbox" style="display: none">
-      <block type="poner_color"></block>
-      <block type="sacar_color"></block>
-      <block type="color_rojo"></block>
-      <block type="color_verde"></block>
-      <block type="mover"></block>
-      <block type="direccion_este"></block>
-      <block type="direccion_oeste"></block>
-      <block type="direccion_norte"></block>
-      <block type="direccion_sur"></block>
+      <category name="Comandos">
+        <category name="Comandos primitivos">
+          <block type="Poner"></block>
+          <block type="Sacar"></block>
+          <block type="Mover"></block>
+          <block type="IrAlBorde"></block>
+          <block type="VaciarTablero"></block>
+        </category>
+        <category name="Procedimientos" custom="PROCEDURE">
+        </category>
+        <category name="Alternativas">
+          <block type="SiEntonces"></block>
+          <block type="SiEntoncesSiNo"></block>
+        </category>
+        <category name="Repeticiones">
+          <block type="Repetir"></block>
+          <block type="RepetirHasta"></block>
+        </category>
+      </category>
+      <category name="Expresiones">
+        <category name="Literales">
+          <block type="math_number"></block>
+          <block type="Rojo"></block>
+          <block type="Verde"></block>
+          <block type="Este"></block>
+          <block type="Oeste"></block>
+          <block type="Norte"></block>
+          <block type="Sur"></block>
+        </category>
+        <category name="Sensores primitivos">
+          <block type="HayBolitas"></block>
+        </category>
+      </category>
     </xml>
   </template>
 
@@ -66,6 +90,10 @@ Example:
           toolbox: document.getElementById('toolbox'),
           media: '../bower_components/blockly-package/media/'
         });
+
+        let xmlInicial = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="Program" id="aF,i.tK-O(jDm1^GT4bP" deletable="false" x="100" y="40"></block></xml>';
+        let dom = Blockly.Xml.textToDom(xmlInicial)
+        Blockly.Xml.domToWorkspace(dom, this.workspace);
       },
 
       attached: function() {
@@ -95,14 +123,14 @@ Example:
         var lang = Blockly.GobstonesLanguage;
         lang.addReservedWords('code');
         var code = lang.workspaceToCode(this.workspace);
-        return 'program {\n' + code + '}';
+        return code;
       },
     });
   </script>
-  
+
   <script src="../bower_components/blockly-package/blockly_compressed.js"></script>
   <script src="../bower_components/blockly-package/blocks_compressed.js"></script>
   <script src="../bower_components/blockly-package/es.js"></script>
-  <script src="gobstones-blocks.js"></script>
-  <script src="gobstones-language-generator.js"></script>
+  <script src="scripts/gobstones-blocks.js"></script>
+  <script src="scripts/gobstones-language-generator.js"></script>
 </dom-module>
