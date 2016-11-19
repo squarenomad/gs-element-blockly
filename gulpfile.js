@@ -306,7 +306,7 @@ gulp.task('code-format-check', function(){
 gulp.task('default', ['clean'], function (cb) {
   // Uncomment 'cache-config' if you are going to use service workers.
   runSequence(
-    ['code-format-check', 'ensureFiles', 'copy', 'styles'],
+    [/*'code-format-check',*/ 'ensureFiles', 'copy', 'styles'],
     ['elements', 'js'],
     ['images', 'fonts', 'html'],
     'vulcanize', // 'cache-config',
