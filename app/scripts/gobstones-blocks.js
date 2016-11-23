@@ -24,11 +24,11 @@ Blockly.Blocks.Repetir = {
 	init: function () {
 		this.setColour(ControlColor);
 		this.appendValueInput('count')
-			.setCheck('Number')
 			.appendField('Repetir');
 		this.appendStatementInput('block');
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
+    this.setInputsInline(true);
 	}
 };
 
@@ -41,6 +41,7 @@ Blockly.Blocks.RepetirHasta = {
 		this.appendStatementInput('block');
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
+    this.setInputsInline(true);
 	}
 };
 
@@ -48,11 +49,11 @@ Blockly.Blocks.SiEntonces = {
 	init: function () {
 		this.setColour(ControlColor);
 		this.appendValueInput('condicion')
-			.setCheck('Boolean')
 			.appendField('Si');
 		this.appendStatementInput('block');
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
+    this.setInputsInline(true);
 	}
 };
 
@@ -60,7 +61,6 @@ Blockly.Blocks.SiEntoncesSiNo = {
 	init: function () {
 		this.setColour(ControlColor);
 		this.appendValueInput('condicion')
-			.setCheck('Boolean')
 			.appendField('Si');
 		this.appendStatementInput('block1');
 		this.appendDummyInput()
@@ -68,6 +68,7 @@ Blockly.Blocks.SiEntoncesSiNo = {
 		this.appendStatementInput('block2');
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
+    this.setInputsInline(true);
 	}
 };
 // ------------------------------------------------------
@@ -82,7 +83,6 @@ Blockly.Blocks.Poner = {
 				{
 					type: 'input_value',
 					name: 'COLOR',
-					check: 'Color'
 				}
 			],
 			previousStatement: true,
@@ -102,7 +102,6 @@ Blockly.Blocks.Sacar = {
 				{
 					type: 'input_value',
 					name: 'COLOR',
-					check: 'Color'
 				}
 			],
 			previousStatement: true,
@@ -122,7 +121,6 @@ Blockly.Blocks.Mover = {
 				{
 					type: 'input_value',
 					name: 'DIRECCION',
-					check: 'Direccion'
 				}
 			],
 			previousStatement: true,
@@ -142,7 +140,6 @@ Blockly.Blocks.IrAlBorde = {
 				{
 					type: 'input_value',
 					name: 'DIRECCION',
-					check: 'Direccion'
 				}
 			],
 			previousStatement: true,
@@ -206,7 +203,6 @@ Blockly.Blocks.HayBolitas = {
 				{
 					type: 'input_value',
 					name: 'COLOR',
-					check: 'Color'
 				}
 			],
 			colour: ExpressionColor,
