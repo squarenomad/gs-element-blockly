@@ -12,7 +12,7 @@ Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT = 'Describe el procedimiento...';
 Blockly.Blocks.Program = {
 	init: function () {
 		this.setColour(100);
-		this.appendDummyInput().appendField('Al empezar a ejecutar');
+		this.appendDummyInput().appendField('programa');
 		this.appendStatementInput('program');
 		this.setDeletable(false);
 		this.setEditable(false);
