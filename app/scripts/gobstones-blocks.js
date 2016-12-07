@@ -28,7 +28,7 @@ Blockly.Blocks.Repetir = {
 		this.appendStatementInput('block');
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-    this.setInputsInline(true);
+		this.setInputsInline(true);
 	}
 };
 
@@ -41,7 +41,7 @@ Blockly.Blocks.RepetirHasta = {
 		this.appendStatementInput('block');
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-    this.setInputsInline(true);
+		this.setInputsInline(true);
 	}
 };
 
@@ -53,7 +53,7 @@ Blockly.Blocks.SiEntonces = {
 		this.appendStatementInput('block');
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-    this.setInputsInline(true);
+		this.setInputsInline(true);
 	}
 };
 
@@ -68,7 +68,7 @@ Blockly.Blocks.SiEntoncesSiNo = {
 		this.appendStatementInput('block2');
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
-    this.setInputsInline(true);
+		this.setInputsInline(true);
 	}
 };
 // ------------------------------------------------------
@@ -82,7 +82,7 @@ Blockly.Blocks.Poner = {
 			args0: [
 				{
 					type: 'input_value',
-					name: 'COLOR',
+					name: 'COLOR'
 				}
 			],
 			previousStatement: true,
@@ -101,7 +101,7 @@ Blockly.Blocks.Sacar = {
 			args0: [
 				{
 					type: 'input_value',
-					name: 'COLOR',
+					name: 'COLOR'
 				}
 			],
 			previousStatement: true,
@@ -120,7 +120,7 @@ Blockly.Blocks.Mover = {
 			args0: [
 				{
 					type: 'input_value',
-					name: 'DIRECCION',
+					name: 'DIRECCION'
 				}
 			],
 			previousStatement: true,
@@ -139,7 +139,7 @@ Blockly.Blocks.IrAlBorde = {
 			args0: [
 				{
 					type: 'input_value',
-					name: 'DIRECCION',
+					name: 'DIRECCION'
 				}
 			],
 			previousStatement: true,
@@ -202,7 +202,7 @@ Blockly.Blocks.HayBolitas = {
 			args0: [
 				{
 					type: 'input_value',
-					name: 'COLOR',
+					name: 'COLOR'
 				}
 			],
 			colour: ExpressionColor,
