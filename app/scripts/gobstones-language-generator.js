@@ -46,6 +46,54 @@ Blockly.GobstonesLanguage.ORDER_COMMA = 17;					 // ,
 Blockly.GobstonesLanguage.ORDER_NONE = 99;						// (...)
 
 /**
+ * Retorna la funcion que genera el codigo para un bloque tipo PROC(arg1, arg2, ...)
+ */
+function procBlockCodeGenerator(procName, args)
+{
+  return function (block) {
+  	var code = procName + '(';
+    var sep = '';
+    for(var a in args)
+    {
+      code += sep + Blockly.GobstonesLanguage.valueToCode(block, args[a],
+    	Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+      sep = ', ';
+    }
+    code += ')\n';
+  	return code;
+  };
+}
+
+/**
+ * Retorna la funcion que genera el codigo para un bloque tipo Expr(arg1, arg2, ...)
+ */
+function exprParamsBlockCodeGenerator(expr, args)
+{
+  return function (block) {
+  	var code = expr + '(';
+    var sep = '';
+    for(var a in args)
+    {
+      code += sep + Blockly.GobstonesLanguage.valueToCode(block, args[a],
+    	Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
+      sep = ', ';
+    }
+    code += ')';
+  	return [code, Blockly.GobstonesLanguage.ORDER_FUNCTION_CALL];
+  };
+}
+
+/**
+ * Retorna la funcion que genera el codigo para un bloque tipo literal
+ */
+function literalBlockCodeGenerator(value)
+{
+  return function (block) {
+  	return [value, Blockly.GobstonesLanguage.ORDER_ATOMIC];
+  };
+}
+
+/**
  * Prepend the generated code with the variable definitions.
  * @param {string} code Generated code.
  * @return {string} Completed code.
@@ -221,67 +269,41 @@ Blockly.GobstonesLanguage.init = function () {
 	}
 };
 
-Blockly.GobstonesLanguage.Poner = function (block) {
-	var color = Blockly.GobstonesLanguage.valueToCode(block, 'COLOR',
-	Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
-	var code = 'Poner(' + color + ')\n';
-	return code;
+Blockly.GobstonesLanguage.Poner = procBlockCodeGenerator('Poner', ['COLOR']);
+Blockly.GobstonesLanguage.Sacar = procBlockCodeGenerator('Sacar', ['COLOR']);
+Blockly.GobstonesLanguage.Mover = procBlockCodeGenerator('Mover', ['DIRECCION']);
+Blockly.GobstonesLanguage.IrAlBorde = procBlockCodeGenerator('IrAlBorde', ['DIRECCION']);
+Blockly.GobstonesLanguage.VaciarTablero = procBlockCodeGenerator('VaciarTablero');
+Blockly.GobstonesLanguage.BOOM = procBlockCodeGenerator('BOOM');
+
+Blockly.GobstonesLanguage.Rojo = literalBlockCodeGenerator('Rojo');
+Blockly.GobstonesLanguage.Verde = literalBlockCodeGenerator('Verde');
+Blockly.GobstonesLanguage.Negro = literalBlockCodeGenerator('Negro');
+Blockly.GobstonesLanguage.Azul = literalBlockCodeGenerator('Azul');
+
+Blockly.GobstonesLanguage.Este = literalBlockCodeGenerator('Este');
+Blockly.GobstonesLanguage.Oeste = literalBlockCodeGenerator('Oeste');
+Blockly.GobstonesLanguage.Norte = literalBlockCodeGenerator('Norte');
+Blockly.GobstonesLanguage.Sur = literalBlockCodeGenerator('Sur');
+
+Blockly.GobstonesLanguage.Relation = function (block) {
+  var code =  (Blockly.GobstonesLanguage.valueToCode(block, 'arg1',
+    Blockly.GobstonesLanguage.ORDER_RELATIONAL) || '\'\'') +
+    ' ' + block.getFieldValue('RELATION') + ' ' +
+    (Blockly.GobstonesLanguage.valueToCode(block, 'arg2',
+      Blockly.GobstonesLanguage.ORDER_RELATIONAL) || '\'\'')
+    ;
+  return [code, Blockly.GobstonesLanguage.ORDER_RELATIONAL];
 };
 
-Blockly.GobstonesLanguage.Sacar = function (block) {
-	var color = Blockly.GobstonesLanguage.valueToCode(block, 'COLOR',
-	Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
-	var code = 'Sacar(' + color + ')\n';
-	return code;
-};
-
-Blockly.GobstonesLanguage.Mover = function (block) {
-	var direccion = Blockly.GobstonesLanguage.valueToCode(block, 'DIRECCION',
-	Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
-	var code = 'Mover(' + direccion + ')\n';
-	return code;
-};
-
-Blockly.GobstonesLanguage.IrAlBorde = function (block) {
-	var direccion = Blockly.GobstonesLanguage.valueToCode(block, 'DIRECCION',
-	Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
-	var code = 'IrAlBorde(' + direccion + ')\n';
-	return code;
-};
-
-Blockly.GobstonesLanguage.VaciarTablero = function () {
-	var code = 'VaciarTablero()\n';
-	return code;
-};
-
-Blockly.GobstonesLanguage.Rojo = function () {
-	var code = 'Rojo';
-	return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
-Blockly.GobstonesLanguage.Verde = function () {
-	var code = 'Verde';
-	return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
-Blockly.GobstonesLanguage.Este = function () {
-	var code = 'Este';
-	return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
-Blockly.GobstonesLanguage.Oeste = function () {
-	var code = 'Oeste';
-	return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
-Blockly.GobstonesLanguage.Norte = function () {
-	var code = 'Norte';
-	return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
-
-Blockly.GobstonesLanguage.Sur = function () {
-	var code = 'Sur';
-	return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
+Blockly.GobstonesLanguage.OpNum = function (block) {
+  var code =  (Blockly.GobstonesLanguage.valueToCode(block, 'arg1',
+    Blockly.GobstonesLanguage.ORDER_ATOMIC) || '\'\'') +
+    ' ' + block.getFieldValue('OPERATOR') + ' ' +
+    (Blockly.GobstonesLanguage.valueToCode(block, 'arg2',
+      Blockly.GobstonesLanguage.ORDER_ATOMIC) || '\'\'')
+    ;
+  return [code, Blockly.GobstonesLanguage.ORDER_ATOMIC];
 };
 
 Blockly.GobstonesLanguage.math_number = function (block) {
@@ -333,12 +355,9 @@ Blockly.GobstonesLanguage.SiEntoncesSiNo = function (block) {
 	return codigo;
 };
 
-Blockly.GobstonesLanguage.HayBolitas = function (block) {
-	var color = Blockly.GobstonesLanguage.valueToCode(block, 'COLOR',
-	Blockly.GobstonesLanguage.ORDER_NONE) || '\'\'';
-	var code = 'hayBolitas(' + color + ')';
-	return [code, Blockly.GobstonesLanguage.ORDER_ADDITION];
-};
+Blockly.GobstonesLanguage.HayBolitas = exprParamsBlockCodeGenerator('HayBolitas', ['COLOR']);
+Blockly.GobstonesLanguage.NroBolitas = exprParamsBlockCodeGenerator('NroBolitas', ['COLOR']);
+Blockly.GobstonesLanguage.PuedeMover = exprParamsBlockCodeGenerator('PuedeMover', ['DIRECCION']);
 
 Blockly.GobstonesLanguage.formatProcName = function (name) {
 	var pname = Blockly.GobstonesLanguage.variableDB_.getName(

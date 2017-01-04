@@ -20,6 +20,10 @@ Blockly.Blocks.Program = {
 	}
 };
 
+// ------------------------------------------------------
+// Control de flujo de ejecucion:
+// ------------------------------------------------------
+
 Blockly.Blocks.Repetir = {
 	init: function () {
 		this.setColour(ControlColor);
@@ -71,6 +75,7 @@ Blockly.Blocks.SiEntoncesSiNo = {
 		this.setInputsInline(true);
 	}
 };
+
 // ------------------------------------------------------
 // Comandos:
 // ------------------------------------------------------
@@ -164,6 +169,18 @@ Blockly.Blocks.VaciarTablero = {
 	}
 };
 
+Blockly.Blocks.BOOM = {
+	init: function () {
+		this.jsonInit({
+			message0: 'BOOM',
+			previousStatement: true,
+			nextStatement: true,
+			colour: CommandColor,
+			tooltip: 'boom!',
+			inputsInline: true
+		});
+	}
+};
 // ------------------------------------------------------
 // Expresiones:
 // ------------------------------------------------------
@@ -189,6 +206,8 @@ function createDireccionBlock(name) {
 
 Blockly.Blocks.Rojo = createColorBlock('Rojo');
 Blockly.Blocks.Verde = createColorBlock('Verde');
+Blockly.Blocks.Negro = createColorBlock('Negro');
+Blockly.Blocks.Azul = createColorBlock('Azul');
 
 Blockly.Blocks.Este = createDireccionBlock('Este');
 Blockly.Blocks.Oeste = createDireccionBlock('Oeste');
@@ -210,4 +229,100 @@ Blockly.Blocks.HayBolitas = {
 			output: 'Boolean'
 		});
 	}
+};
+
+Blockly.Blocks.PuedeMover = {
+	init: function () {
+		this.jsonInit({
+			message0: 'PuedeMover %1',
+			args0: [
+				{
+					type: 'input_value',
+					name: 'COLOR'
+				}
+			],
+			colour: ExpressionColor,
+			inputsInline: true,
+			output: 'Boolean'
+		});
+	}
+};
+
+Blockly.Blocks.NroBolitas = {
+	init: function () {
+		this.jsonInit({
+			message0: 'Nro bolitas %1',
+			args0: [
+				{
+					type: 'input_value',
+					name: 'COLOR'
+				}
+			],
+			colour: ExpressionColor,
+			inputsInline: true,
+			output: 'Boolean'
+		});
+	}
+};
+
+// ------------------------------------------------------
+// Relacionales:
+// ------------------------------------------------------
+
+Blockly.Blocks.Relation = {
+  init: function () {
+    this.jsonInit({
+      message0: '%1 %2 %3 %4',
+      args0: [
+        {
+          type: 'input_value',
+          name: 'arg1'
+        },
+        {
+          type: "field_dropdown",
+          name: "RELATION",
+          options: [["==", "=="], ["/=", "/="], ['<=', '<='], ['<', '<'], ['>=', '>='] ,['>', '>']]
+        },
+        {
+          type: "input_dummy"
+        },
+        {
+          type: 'input_value',
+          name: 'arg2'
+        }
+      ],
+      colour: ExpressionColor,
+      inputsInline: false,
+      output: 'Boolean'
+    });
+  }
+};
+
+Blockly.Blocks.OpNum = {
+  init: function () {
+    this.jsonInit({
+      message0: '%1 %2 %3 %4',
+      args0: [
+        {
+          type: 'input_value',
+          name: 'arg1'
+        },
+        {
+          type: "field_dropdown",
+          name: "OPERATOR",
+          options: [["+", "+"], ["-", "-"], ['*', '*'], ['div', 'div'], ['mod', 'mod'] ,['^', '^']]
+        },
+        {
+          type: "input_dummy"
+        },
+        {
+          type: 'input_value',
+          name: 'arg2'
+        }
+      ],
+      colour: ExpressionColor,
+      inputsInline: false,
+      output: 'Number'
+    });
+  }
 };
